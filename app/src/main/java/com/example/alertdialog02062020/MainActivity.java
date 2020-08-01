@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,32 +25,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setTitle("Ban muon thoat app ?");
-                builder.setMessage("Hay xac nhan ben duoi");
+                builder.setTitle("Ban muon chon con vat nao ?");
                 builder.setIcon(R.mipmap.ic_launcher);
                 builder.setCancelable(false);
 
-                // Nut co
-                builder.setPositiveButton("Co", new DialogInterface.OnClickListener() {
+                // single choice
+                final String[] arrayAnimal = {"Meo","Cho","Ga","Heo","Vit"};
+                builder.setSingleChoiceItems(arrayAnimal, -1, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        finish();
+                        Toast.makeText(MainActivity.this,arrayAnimal[which] , Toast.LENGTH_SHORT).show();
                     }
                 });
-                // Nut khong
-                builder.setNegativeButton("Khong", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
 
-                    }
-                });
-                //Nut huy bo
-                builder.setNeutralButton("Huy", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                });
                 builder.show();
             }
         });
